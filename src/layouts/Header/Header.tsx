@@ -19,7 +19,8 @@ export const Header: React.FC = () => {
               <NavLink
                 to="/"
                 style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#4b5563",
+                  color: isActive ? "#000" : "#3f3f3f",
+                  fontWeight: isActive ? "600" : "500",
                 })}
               >
                 Partidas
@@ -29,7 +30,8 @@ export const Header: React.FC = () => {
               <NavLink
                 to="/artilheiros"
                 style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#4b5563",
+                  color: isActive ? "#000" : "#3f3f3f",
+                  fontWeight: isActive ? "600" : "500",
                 })}
               >
                 Artilheiros
@@ -39,7 +41,8 @@ export const Header: React.FC = () => {
               <NavLink
                 to="/jogadores"
                 style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#4b5563",
+                  color: isActive ? "#000" : "#3f3f3f",
+                  fontWeight: isActive ? "600" : "500",
                 })}
               >
                 Jogadores

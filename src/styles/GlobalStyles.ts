@@ -8,12 +8,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --brand-color: #ffbd48;
+    --gray-100: #f3f4f6;
+    --gray-500: #6b7280;
+    --gray-900: #3f3f3f;
 
-    --dark: #2e2e2e;
-
-    --gray: #fefbf4;
-
+    --black: #000;
     --white: #fff;
   }
 
@@ -41,5 +40,9 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+  }
+
+  .container {
+    padding: 4rem 2.4rem;
   }
 `

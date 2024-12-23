@@ -30,5 +30,4 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   font-size: 1.6rem;
-  font-weight: 500;
 `
