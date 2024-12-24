@@ -4,8 +4,6 @@ export const Header = styled.header`
   box-shadow: 0px 8px 18px -12px rgba(0,0,0,0.24);
   -webkit-box-shadow: 0px 8px 18px -12px rgba(0,0,0,0.24);
   -moz-box-shadow: 0px 8px 18px -12px rgba(0,0,0,0.24);
-
-  padding: 4rem 0;
 `
 
 export const HeaderContainer = styled.div`
@@ -16,7 +14,7 @@ export const HeaderContainer = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 10rem;
+  width: 8rem;
 `
 
 export const Nav = styled.nav``

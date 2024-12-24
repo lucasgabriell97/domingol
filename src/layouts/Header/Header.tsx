@@ -7,7 +7,7 @@ import { NavLink } from "react-router";
 
 export const Header: React.FC = () => {
   return (
-    <S.Header>
+    <S.Header className="container">
       <S.HeaderContainer>
         <NavLink to="/">
           <S.Logo src={Logo} alt="Logo da Domingol" />

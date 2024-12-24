@@ -8,8 +8,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --gray-100: #f3f4f6;
-    --gray-500: #6b7280;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
     --gray-900: #3f3f3f;
 
     --black: #000;
