@@ -1,25 +1,23 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import * as S from "./styles";
 
-interface InputProps {
-  type: string;
+import { UseFormRegisterReturn } from "react-hook-form";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegisterReturn;
 }
 
 export const Input: React.FC<InputProps> = ({
-  type,
   placeholder,
-  value,
-  onChange,
+  register,
+  ...rest
 }) => {
   return (
     <S.Input
-      type={type}
       placeholder={placeholder}
-      value={value}
-      onChange={onChange}
+      {...register}
+      {...rest}
     />
   );
 };

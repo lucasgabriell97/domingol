@@ -2,11 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main``
 
-export const PlayersSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-`
+export const PlayersSection = styled.section``
 
 export const PlayerListWrapper = styled.div``
 

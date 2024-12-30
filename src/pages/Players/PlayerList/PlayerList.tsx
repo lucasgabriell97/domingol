@@ -26,10 +26,10 @@ export const PlayerList: React.FC<PlayerListProps> = ({
           <S.ListItem key={player.id}>
             <S.PlayerName>{player.name}</S.PlayerName>
             <Button>
-              <Pencil />
+              <Pencil size={20} />
             </Button>
             <Button onClick={() => onDeletePlayerClick(player.id)}>
-              <Trash2 />
+              <Trash2 size={20} />
             </Button>
           </S.ListItem>
         ))

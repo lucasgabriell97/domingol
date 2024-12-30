@@ -1,36 +1,48 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Plus } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 
-export const AddPlayer: React.FC = () => {
-  const [name, setName] = React.useState<string>("");
+interface AddPlayerProps {
+  onAddPlayerSubmit: (name: string) => void;
+}
 
-  // const handleAddPlayer = (e: React.FormEvent) => {
-  //   e.preventDefault();
+export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<{ name: string }>();
 
-  //   setPlayers((prevPlayers) => [
-  //     ...prevPlayers,
-  //     { id: prevPlayers.length + 1, name },
-  //   ]);
-
-  //   setName("")
-  // };
+  const onSubmit = ({ name }: { name: string }) => {
+    onAddPlayerSubmit(name);
+    console.log(name);
+    reset({ name: "" });
+  };
 
   return (
-    <S.Form>
-      <Input
-        type="text"
-        placeholder="Digite o nome do jogador"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Button>
-        <Plus />
-      </Button>
+    <S.Form onSubmit={handleSubmit(onSubmit)}>
+      <S.InputWrapper>
+        <Input
+          type="text"
+          placeholder="Digite o nome do jogador"
+          register={register("name", {
+            required: "O nome é obrigatório.",
+            validate: (value) => value.trim() !== "" || "O nome não pode conter espaços vazios.",
+            pattern: {
+              value: /^[a-zA-ZÀ-ÿ\s]+$/,
+              message: "Apenas letras e espaços são permitidos.",
+            },
+          })}
+        />
+        {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
+      </S.InputWrapper>
+
+      <Button>Adicionar</Button>
     </S.Form>
   );
 };
