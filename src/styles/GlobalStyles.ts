@@ -46,4 +46,17 @@ export const GlobalStyles = createGlobalStyle`
   .container {
     padding: 4rem 2.4rem;
   }
+
+  .form {
+    background-color: var(--gray-200);
+    border: 3px solid var(--gray-300);
+    border-radius: 5px;
+
+    padding: 1.5rem;
+    margin-bottom: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 `

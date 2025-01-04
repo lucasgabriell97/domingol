@@ -4,6 +4,8 @@ import * as S from "./styles";
 import { AddPlayer } from "./AddPlayer/AddPlayer";
 import { PlayerList } from "./PlayerList/PlayerList";
 
+import { Title } from "../../components/Title/Title";
+
 interface Player {
   id: number;
   name: string;
@@ -38,13 +40,11 @@ export const Players: React.FC = () => {
       <S.PlayersSection>
         <AddPlayer onAddPlayerSubmit={onAddPlayerSubmit} />
 
-        <S.PlayerListWrapper>
-          <S.Title>Lista de Jogadores</S.Title>
-          <PlayerList
-            players={players}
-            onDeletePlayerClick={onDeletePlayerClick}
-          />
-        </S.PlayerListWrapper>
+        <Title>Lista de jogadores</Title>
+        <PlayerList
+          players={players}
+          onDeletePlayerClick={onDeletePlayerClick}
+        />
       </S.PlayersSection>
     </S.Main>
   );

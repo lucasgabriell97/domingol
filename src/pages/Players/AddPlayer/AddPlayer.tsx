@@ -25,10 +25,9 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
   };
 
   return (
-    <S.Form onSubmit={handleSubmit(onSubmit)}>
+    <S.Form className="form" onSubmit={handleSubmit(onSubmit)}>
       <S.InputWrapper>
         <Input
-          type="text"
           placeholder="Digite o nome do jogador"
           register={register("name", {
             required: "O nome é obrigatório.",
