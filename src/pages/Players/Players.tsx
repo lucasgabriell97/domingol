@@ -6,33 +6,28 @@ import { PlayerList } from "./PlayerList/PlayerList";
 
 import { Title } from "../../components/Title/Title";
 
-interface Player {
-  id: number;
-  name: string;
-}
+import { PlayersContext } from "../../context/PlayersContext";
 
 export const Players: React.FC = () => {
-  const [players, setPlayers] = React.useState<Player[]>(() => {
-    const storedPlayers = localStorage.getItem("players");
-    return storedPlayers ? JSON.parse(storedPlayers) : [];
-  });
-
-  React.useEffect(() => {
-    localStorage.setItem("players", JSON.stringify(players));
-  }, [players]);
+  const {players, setPlayers} = React.useContext(PlayersContext);
+  console.log(players)
 
   const onAddPlayerSubmit = (name: string) => {
     const newPlayer = {
       id: players.length + 1,
       name,
+      goals: 0
     };
 
-    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
+    const updatedPlayers = [...players, newPlayer];
+    setPlayers(updatedPlayers);
+    localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
   const onDeletePlayerClick = (playerId: number) => {
-    const newPlayers = players.filter((player) => player.id !== playerId);
-    setPlayers(newPlayers);
+    const updatedPlayers = players.filter((player) => player.id !== playerId);
+    setPlayers(updatedPlayers);
+    localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./styles";
 
 import { AddMatch } from "./AddMatch/AddMatch";
+import { MatchList } from "./MatchList/MatchList";
 
 import { Title } from "../../components/Title/Title";
 
@@ -37,10 +38,10 @@ export const Matches: React.FC = () => {
 
         <Title>Partidas Realizadas</Title>
 
-        {/* <PlayerList
-          players={players}
-          onDeletePlayerClick={onDeletePlayerClick}
-        /> */}
+        <MatchList
+          matches={matches}
+          // onDeletePlayerClick={onDeletePlayerClick}
+        />
       </S.PlayersSection>
     </S.Main>
   );

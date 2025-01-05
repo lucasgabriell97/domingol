@@ -12,7 +12,7 @@ export const List = styled.ul`
   gap: 1rem;
 `
 
-export const NoPlayers = styled.p`
+export const EmptyPlayers = styled.p`
   font-size: 1.5rem;
   text-align: center;
 `

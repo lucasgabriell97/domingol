@@ -20,7 +20,6 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
 
   const onSubmit = ({ name }: { name: string }) => {
     onAddPlayerSubmit(name);
-    console.log(name);
     reset({ name: "" });
   };
 

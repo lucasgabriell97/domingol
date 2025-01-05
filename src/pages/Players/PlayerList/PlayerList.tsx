@@ -20,7 +20,7 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   return (
     <S.List>
       {players.length === 0 ? (
-        <S.NoPlayers>Nenhum jogador cadastrado no momento.</S.NoPlayers>
+        <S.EmptyPlayers>Nenhum jogador cadastrado no momento.</S.EmptyPlayers>
       ) : (
         players.map((player) => (
           <S.ListItem key={player.id}>
