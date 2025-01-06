@@ -2,7 +2,7 @@ import React from "react";
 
 interface MatchListProps {
   matches: {
-    id: number;
+    id: string;
     blueScoreboard: number;
     redScoreboard: number;
     date: string;

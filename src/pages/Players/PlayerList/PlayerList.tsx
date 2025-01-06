@@ -7,10 +7,11 @@ import { Button } from "../../../components/Button/Button";
 
 interface PlayerListProps {
   players: {
-    id: number;
+    id: string;
     name: string;
+    goals: number;
   }[];
-  onDeletePlayerClick: (playerId: number) => void;
+  onDeletePlayerClick: (playerId: string) => void;
 }
 
 export const PlayerList: React.FC<PlayerListProps> = ({
