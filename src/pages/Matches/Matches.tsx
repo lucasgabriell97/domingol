@@ -19,12 +19,14 @@ interface Match {
 export const Matches: React.FC = () => {
   const [matches, setMatches] = React.useState<Match[]>([]);
 
-  const {players, setPlayers} = React.useContext(PlayersContext);
+  const { players, setPlayers } = React.useContext(PlayersContext);
 
   const onAddMatchSubmit = (
     blueScoreboard: number,
     redScoreboard: number,
-    date: string
+    date: string,
+    blueGoals: { playerId: string; goals: number }[],
+    redGoals: { playerId: string; goals: number }[]
   ) => {
     const newMatch = {
       id: uuidv4(),
@@ -34,12 +36,28 @@ export const Matches: React.FC = () => {
     };
 
     setMatches((prevMatches) => [...prevMatches, newMatch]);
+
+    const updatedPlayers = players.map((player) => {
+      const blueGoal = blueGoals.find((goal) => goal.playerId === player.id);
+      const redGoal = redGoals.find((goal) => goal.playerId === player.id);
+      const totalGoals = (blueGoal?.goals || 0) + (redGoal?.goals || 0);
+
+      return totalGoals > 0
+        ? { ...player, goals: player.goals + totalGoals }
+        : player;
+    });
+
+    setPlayers(updatedPlayers);
+    localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
   return (
     <S.Main className="container">
       <S.PlayersSection>
-        <AddMatch onAddMatchSubmit={onAddMatchSubmit} />
+        <AddMatch 
+          players={players} 
+          onAddMatchSubmit={onAddMatchSubmit} 
+        />
 
         <Title>Partidas Realizadas</Title>
 

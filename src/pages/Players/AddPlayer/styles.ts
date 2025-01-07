@@ -5,7 +5,7 @@ export const Form = styled.form``
 export const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; 
+    gap: 1rem; 
 `
 
 export const ErrorMessage = styled.p`

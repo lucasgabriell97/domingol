@@ -40,7 +40,7 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
         {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
       </S.InputWrapper>
 
-      <Button>Adicionar</Button>
+      <Button>Cadastrar Jogador</Button>
     </S.Form>
   );
 };
