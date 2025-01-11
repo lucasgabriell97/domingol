@@ -28,13 +28,13 @@ export const Header: React.FC = () => {
             </S.ListItem>
             <S.ListItem>
               <NavLink
-                to="/artilheiros"
+                to="/artilharia"
                 style={({ isActive }) => ({
                   color: isActive ? "#000" : "#3f3f3f",
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Artilheiros
+                Artilharia
               </NavLink>
             </S.ListItem>
             <S.ListItem>

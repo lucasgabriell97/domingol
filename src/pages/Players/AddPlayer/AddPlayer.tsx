@@ -24,7 +24,7 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
   };
 
   return (
-    <S.Form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <S.Form className="content" onSubmit={handleSubmit(onSubmit)}>
       <S.InputWrapper>
         <Input
           placeholder="Digite o nome do jogador"

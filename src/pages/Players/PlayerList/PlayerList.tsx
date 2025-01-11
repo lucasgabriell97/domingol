@@ -19,13 +19,15 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   onDeletePlayerClick,
 }) => {
   return (
-    <S.List>
+    <S.List className="content">
       {players.length === 0 ? (
         <S.EmptyPlayers>Nenhum jogador cadastrado no momento.</S.EmptyPlayers>
       ) : (
         players.map((player) => (
           <S.ListItem key={player.id}>
-            <S.PlayerName>{player.name}</S.PlayerName>
+            <S.PlayerWrapper>
+              <S.PlayerName>{player.name}</S.PlayerName>
+            </S.PlayerWrapper>
             <Button>
               <Pencil size={20} />
             </Button>

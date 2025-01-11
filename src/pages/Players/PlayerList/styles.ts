@@ -1,16 +1,6 @@
 import styled from "styled-components";
 
-export const List = styled.ul`
-  background-color: var(--gray-200);
-  border: 3px solid var(--gray-300);
-  border-radius: 5px;
-
-  padding: 1.5rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`
+export const List = styled.ul``
 
 export const EmptyPlayers = styled.p`
   font-size: 1.5rem;
@@ -22,14 +12,16 @@ export const ListItem = styled.li`
   gap: 1rem;
 `
 
-export const PlayerName = styled.p`
+export const PlayerWrapper = styled.div`
   flex: 1;
-  align-content: center;
 
   background-color: var(--gray-400);
   border-radius: 5px;
-  font-size: 1.6rem;
-  color: var(--white);
 
   padding: 1rem;
+`
+
+export const PlayerName = styled.p`
+  font-size: 1.6rem;
+  color: var(--white);
 `

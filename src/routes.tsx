@@ -10,7 +10,7 @@ export const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Matches />} />
-      <Route path="/artilheiros" element={<Goalscorer />} />
+      <Route path="/artilharia" element={<Goalscorer />} />
       <Route path="/jogadores" element={<Players />} />
     </Routes>
   );

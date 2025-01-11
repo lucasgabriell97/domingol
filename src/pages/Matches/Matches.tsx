@@ -18,8 +18,14 @@ interface Match {
 
 export const Matches: React.FC = () => {
   const [matches, setMatches] = React.useState<Match[]>([]);
-
   const { players, setPlayers } = React.useContext(PlayersContext);
+
+  React.useEffect(() => {
+    const storedMatches = localStorage.getItem("matches");
+    if (storedMatches) {
+      setMatches(JSON.parse(storedMatches));
+    }
+  }, []);
 
   const onAddMatchSubmit = (
     blueScoreboard: number,
@@ -35,7 +41,9 @@ export const Matches: React.FC = () => {
       date,
     };
 
-    setMatches((prevMatches) => [...prevMatches, newMatch]);
+    const updateMatches = [...matches, newMatch];
+    setMatches(updateMatches);
+    localStorage.setItem("matches", JSON.stringify(updateMatches));
 
     const updatedPlayers = players.map((player) => {
       const blueGoal = blueGoals.find((goal) => goal.playerId === player.id);
@@ -54,10 +62,7 @@ export const Matches: React.FC = () => {
   return (
     <S.Main className="container">
       <S.PlayersSection>
-        <AddMatch 
-          players={players} 
-          onAddMatchSubmit={onAddMatchSubmit} 
-        />
+        <AddMatch players={players} onAddMatchSubmit={onAddMatchSubmit} />
 
         <Title>Partidas Realizadas</Title>
 

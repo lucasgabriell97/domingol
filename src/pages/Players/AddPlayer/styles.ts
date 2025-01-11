@@ -1,6 +1,8 @@
 import styled from "styled-components"
 
-export const Form = styled.form``
+export const Form = styled.form`
+  margin-bottom: 5rem;
+`
 
 export const InputWrapper = styled.div`
     display: flex;
