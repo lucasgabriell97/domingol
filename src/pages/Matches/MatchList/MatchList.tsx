@@ -12,9 +12,13 @@ interface MatchListProps {
     redScoreboard: number;
     date: string;
   }[];
+  onDeleteMatchClick: (matchId: string) => void;
 }
 
-export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
+export const MatchList: React.FC<MatchListProps> = ({
+  matches,
+  onDeleteMatchClick,
+}) => {
   return (
     <S.List className="content">
       {matches.length === 0 ? (
@@ -35,7 +39,7 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
                 </S.Result>
                 <S.RedTeam></S.RedTeam>
               </S.MatchWrapper>
-              <Button>
+              <Button onClick={() => onDeleteMatchClick(match.id)}>
                 <Trash2 size={20} />
               </Button>
             </S.ListItem>

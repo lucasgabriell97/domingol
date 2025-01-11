@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const List = styled.ul``
+export const List = styled.ul`
+  margin-bottom: 2rem;
+`
 
 export const EmptyMatches = styled.p`
   font-size: 1.5rem;
@@ -47,7 +49,7 @@ export const BlueTeam = styled.span`
   border-radius: 5px;
 `
 
-export const Result = styled.p`
+export const Result = styled.span`
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--white);

@@ -14,6 +14,8 @@ interface Match {
   blueScoreboard: number;
   redScoreboard: number;
   date: string;
+  blueGoals: { playerId: string; goals: number }[];
+  redGoals: { playerId: string; goals: number }[];
 }
 
 export const Matches: React.FC = () => {
@@ -39,6 +41,8 @@ export const Matches: React.FC = () => {
       blueScoreboard,
       redScoreboard,
       date,
+      blueGoals,
+      redGoals
     };
 
     const updateMatches = [...matches, newMatch];
@@ -59,6 +63,31 @@ export const Matches: React.FC = () => {
     localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
+  const onDeleteMatchClick = (matchId: string) => {
+    const updatedMatches = matches.filter((match) => match.id !== matchId);
+    setMatches(updatedMatches);
+    localStorage.setItem("matches", JSON.stringify(updatedMatches));
+
+    const matchToDelete = matches.find((match) => match.id === matchId);
+
+    if (matchToDelete) {
+      const updatedPlayers = players.map((player) => {
+        const blueGoal = matchToDelete.blueGoals.find((goal) => goal.playerId === player.id);
+        const redGoal = matchToDelete.redGoals.find((goal) => goal.playerId === player.id);
+
+        const totalGoalsToRemove =
+          (blueGoal?.goals || 0) + (redGoal?.goals || 0);
+
+        return totalGoalsToRemove > 0
+          ? { ...player, goals: player.goals - totalGoalsToRemove }
+          : player;
+      });
+
+      setPlayers(updatedPlayers);
+      localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    }
+  };
+
   return (
     <S.Main className="container">
       <S.PlayersSection>
@@ -66,10 +95,7 @@ export const Matches: React.FC = () => {
 
         <Title>Partidas Realizadas</Title>
 
-        <MatchList
-          matches={matches}
-          // onDeletePlayerClick={onDeletePlayerClick}
-        />
+        <MatchList matches={matches} onDeleteMatchClick={onDeleteMatchClick} />
       </S.PlayersSection>
     </S.Main>
   );
