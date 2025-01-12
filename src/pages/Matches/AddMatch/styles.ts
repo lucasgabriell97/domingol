@@ -13,6 +13,7 @@ export const InputWrapper = styled.div`
 export const ErrorMessage = styled.p`
   color: red;
   font-size: 1.1rem;
+  font-weight: 500;
 `
 
 export const GoalsWrapper = styled(InputWrapper)`

@@ -1,9 +1,12 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Pencil, Trash2, ArrowLeft, ArrowRight } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
+import { Pagination } from "../../../components/Pagination/Pagination";
+
+import { usePagination } from "../../../hooks/usePagination";
 
 interface PlayerListProps {
   players: {
@@ -18,34 +21,18 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   players,
   onDeletePlayerClick,
 }) => {
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 2;
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentPlayers = players.slice(indexOfFirstItem, indexOfLastItem);
-
-  const totalPages = Math.ceil(players.length / itemsPerPage);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
+  const { currentPage, totalPages, currentItems, setPage } = usePagination(
+    players,
+    2
+  );
 
   return (
     <>
       <S.List className="content">
-        {currentPlayers.length === 0 ? (
+        {currentItems.length === 0 ? (
           <S.EmptyPlayers>Nenhum jogador cadastrado no momento.</S.EmptyPlayers>
         ) : (
-          currentPlayers.map((player) => (
+          currentItems.map((player) => (
             <S.ListItem key={player.id}>
               <S.PlayerWrapper>
                 <S.PlayerName>{player.name}</S.PlayerName>
@@ -61,17 +48,11 @@ export const PlayerList: React.FC<PlayerListProps> = ({
         )}
       </S.List>
 
-      <div>
-        <Button onClick={handlePrevPage} disabled={currentPage === 1}>
-          <ArrowLeft size={20} />
-        </Button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          <ArrowRight size={20} />
-        </Button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
     </>
   );
 };

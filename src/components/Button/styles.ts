@@ -7,7 +7,13 @@ export const Button = styled.button`
   border: none;
   color: var(--white);
   font-size: 1.6rem;
+  font-weight: 500;
   cursor: pointer;
 
   padding: 1rem;
+
+  &:disabled {
+    background-color: var(--gray-300);
+    cursor: not-allowed;
+  }
 `

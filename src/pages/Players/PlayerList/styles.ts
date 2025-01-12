@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-export const List = styled.ul``
+export const List = styled.ul`
+  margin-bottom: 2rem;
+`
 
 export const EmptyPlayers = styled.p`
   font-size: 1.5rem;
+  font-weight: 500;
   text-align: center;
 `
 
@@ -23,5 +26,6 @@ export const PlayerWrapper = styled.div`
 
 export const PlayerName = styled.p`
   font-size: 1.6rem;
+  font-weight: 500;
   color: var(--white);
 `
