@@ -8,10 +8,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-400: #94a3b8;
-    --gray-900: #3f3f3f;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-900: #1f2937;
 
     --black: #000;
     --white: #fff;
@@ -45,6 +46,8 @@ export const GlobalStyles = createGlobalStyle`
 
   .container {
     padding: 4rem 2.4rem;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .content {

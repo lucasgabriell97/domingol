@@ -5,6 +5,7 @@ import { Trash2 } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
 import { Pagination } from "../../../components/Pagination/Pagination";
+import { EmptyDataMessage } from "../../../components/EmptyDataMessage/EmptyDataMessage";
 
 import { usePagination } from "../../../hooks/usePagination";
 
@@ -22,18 +23,20 @@ export const MatchList: React.FC<MatchListProps> = ({
   matches,
   onDeleteMatchClick,
 }) => {
+  const reversedMatches = [...matches].reverse();
+
   const { currentPage, totalPages, currentItems, setPage } = usePagination(
-    matches,
-    2
+    reversedMatches,
+    8
   );
 
   return (
     <>
       <S.List className="content">
         {currentItems.length === 0 ? (
-          <S.EmptyMatches>
+          <EmptyDataMessage>
             Nenhuma partida cadastrada no momento.
-          </S.EmptyMatches>
+          </EmptyDataMessage>
         ) : (
           currentItems.map((match) => {
             const formattedDate = new Date(

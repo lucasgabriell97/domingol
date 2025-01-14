@@ -15,5 +15,11 @@ export const usePagination = (items: any[], itemsPerPage: number) => {
     }
   };
 
+  React.useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages || 1);
+    }
+  }, [currentPage, totalPages]);
+
   return { currentItems, currentPage, totalPages, setPage };
 };

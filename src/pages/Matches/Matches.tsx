@@ -90,13 +90,13 @@ export const Matches: React.FC = () => {
 
   return (
     <S.Main className="container">
-      <S.PlayersSection>
+      <S.MatchesSection>
         <AddMatch players={players} onAddMatchSubmit={onAddMatchSubmit} />
 
         <Title>Partidas Realizadas</Title>
 
         <MatchList matches={matches} onDeleteMatchClick={onDeleteMatchClick} />
-      </S.PlayersSection>
+      </S.MatchesSection>
     </S.Main>
   );
 };

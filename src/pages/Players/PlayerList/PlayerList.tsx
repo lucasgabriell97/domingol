@@ -5,6 +5,7 @@ import { Pencil, Trash2 } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
 import { Pagination } from "../../../components/Pagination/Pagination";
+import { EmptyDataMessage } from "../../../components/EmptyDataMessage/EmptyDataMessage";
 
 import { usePagination } from "../../../hooks/usePagination";
 
@@ -21,16 +22,20 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   players,
   onDeletePlayerClick,
 }) => {
+  const reversedPlayers = [...players].reverse();
+
   const { currentPage, totalPages, currentItems, setPage } = usePagination(
-    players,
-    2
+    reversedPlayers,
+    8
   );
 
   return (
     <>
       <S.List className="content">
         {currentItems.length === 0 ? (
-          <S.EmptyPlayers>Nenhum jogador cadastrado no momento.</S.EmptyPlayers>
+          <EmptyDataMessage>
+            Nenhum jogador cadastrado no momento.
+          </EmptyDataMessage>
         ) : (
           currentItems.map((player) => (
             <S.ListItem key={player.id}>

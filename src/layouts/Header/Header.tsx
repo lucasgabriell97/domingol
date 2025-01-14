@@ -7,8 +7,8 @@ import { NavLink } from "react-router";
 
 export const Header: React.FC = () => {
   return (
-    <S.Header className="container">
-      <S.HeaderContainer>
+    <S.Header>
+      <S.HeaderWrapper className="container">
         <NavLink to="/">
           <S.Logo src={Logo} alt="Logo da Domingol" />
         </NavLink>
@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
             </S.ListItem>
           </S.List>
         </S.Nav>
-      </S.HeaderContainer>
+      </S.HeaderWrapper>
     </S.Header>
   );
 };

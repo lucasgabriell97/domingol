@@ -4,12 +4,6 @@ export const List = styled.ul`
   margin-bottom: 2rem;
 `
 
-export const EmptyMatches = styled.p`
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-align: center;
-`
-
 export const ListItem = styled.li`
   display: flex;
   gap: 1rem;
