@@ -4,11 +4,14 @@ export const Main = styled.main``
 
 export const GoalscorerSection = styled.section``
 
+
 export const Table = styled.table`
   width: 100%;
   font-size: 1.6rem;
   border-collapse: collapse;
 `
+
+export const EmptyDataMessageWrapper = styled.div``
 
 export const Thead = styled.thead`
   background-color: var(--gray-400);

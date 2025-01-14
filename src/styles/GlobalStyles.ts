@@ -56,9 +56,5 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 5px;
 
     padding: 1.5rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 `

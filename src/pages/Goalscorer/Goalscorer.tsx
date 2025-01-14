@@ -17,11 +17,12 @@ export const Goalscorer: React.FC = () => {
     <S.Main className="container">
       <S.GoalscorerSection>
         <Title>Artilharia</Title>
-
         {playersGoals.length === 0 ? (
-          <EmptyDataMessage>
-            Nenhum jogador marcou gols no momento.
-          </EmptyDataMessage>
+          <S.EmptyDataMessageWrapper className="content">
+            <EmptyDataMessage>
+              Nenhum jogador marcou gols no momento.
+            </EmptyDataMessage>
+          </S.EmptyDataMessageWrapper>
         ) : (
           <S.Table>
             <S.Thead>

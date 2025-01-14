@@ -1,13 +1,17 @@
 import styled from "styled-components"
 
 export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
   margin-bottom: 5rem;
 `
 
 export const InputWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
 `
 
 export const ErrorMessage = styled.p`
