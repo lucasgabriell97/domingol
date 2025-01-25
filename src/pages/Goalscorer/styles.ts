@@ -7,8 +7,12 @@ export const GoalscorerSection = styled.section``
 
 export const Table = styled.table`
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   border-collapse: collapse;
+
+  @media(width >= 768px) {
+    font-size: 1.6rem;
+  }
 `
 
 export const EmptyDataMessageWrapper = styled.div``

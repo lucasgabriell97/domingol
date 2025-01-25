@@ -12,29 +12,36 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `
 
 export const ErrorMessage = styled.p`
   color: red;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
 `
 
 export const GoalsWrapper = styled(InputWrapper)`
-
   button {
     align-self: flex-start;
   }
 `
 
 export const GoalsTitle = styled.h3`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--gray-900);
 
   margin-top: 1rem;
+
+  @media (width >= 768px) {
+    font-size: 1.4rem;
+  }
 `
 
-export const AddGoalsWrapper = styled(InputWrapper)``
+export const AddGoalsWrapper = styled(InputWrapper)`
+  display: flex;
+  flex-direction: row;
+`
 
 export const Select = styled.select`
   width: 100%;

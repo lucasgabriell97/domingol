@@ -43,10 +43,10 @@ export const PlayerList: React.FC<PlayerListProps> = ({
                 <S.PlayerName>{player.name}</S.PlayerName>
               </S.PlayerWrapper>
               <Button>
-                <Pencil size={20} />
+                <Pencil size={19} />
               </Button>
               <Button onClick={() => onDeletePlayerClick(player.id)}>
-                <Trash2 size={20} />
+                <Trash2 size={19} />
               </Button>
             </S.ListItem>
           ))

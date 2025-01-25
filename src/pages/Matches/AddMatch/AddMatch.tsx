@@ -123,43 +123,47 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         <S.GoalsTitle>Gols pelo time azul</S.GoalsTitle>
         {blueFieldArray.fields.map((field, index) => (
           <S.AddGoalsWrapper key={field.id}>
-            <S.Select
-              {...register(`blueGoals.${index}.playerId`, {
-                required: "Selecione um jogador.",
-              })}
-            >
-              <S.Option value="">Selecionar jogador</S.Option>
-              {players.map((player) => (
-                <S.Option key={player.id} value={player.id}>
-                  {player.name}
-                </S.Option>
-              ))}
-            </S.Select>
-            {errors.blueGoals?.[index]?.playerId && (
-              <S.ErrorMessage>
-                {errors.blueGoals[index].playerId?.message}
-              </S.ErrorMessage>
-            )}
-            <S.GoalWrapper>
-              <Input
-                placeholder="Gols"
-                register={register(`blueGoals.${index}.goals`, {
-                  required: "Digite os gols marcados.",
-                  pattern: {
-                    value: /^\d+$/,
-                    message: "O número de gols deve ser um valor numérico.",
-                  },
+            <S.InputWrapper>
+              <S.Select
+                {...register(`blueGoals.${index}.playerId`, {
+                  required: "Selecione um jogador.",
                 })}
-              />
+              >
+                <S.Option value="">Selecionar jogador</S.Option>
+                {players.map((player) => (
+                  <S.Option key={player.id} value={player.id}>
+                    {player.name}
+                  </S.Option>
+                ))}
+              </S.Select>
+              {errors.blueGoals?.[index]?.playerId && (
+                <S.ErrorMessage>
+                  {errors.blueGoals[index].playerId?.message}
+                </S.ErrorMessage>
+              )}
+            </S.InputWrapper>
+            <S.GoalWrapper>
+              <S.InputWrapper>
+                <Input
+                  placeholder="Gols"
+                  register={register(`blueGoals.${index}.goals`, {
+                    required: "Digite os gols.",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "O número de gols deve ser um valor numérico.",
+                    },
+                  })}
+                />
+                {errors.blueGoals?.[index]?.goals && (
+                  <S.ErrorMessage>
+                    {errors.blueGoals[index].goals?.message}
+                  </S.ErrorMessage>
+                )}
+              </S.InputWrapper>
               <Button onClick={() => blueFieldArray.remove(index)}>
                 <Trash2 size={20} />
               </Button>
             </S.GoalWrapper>
-            {errors.blueGoals?.[index]?.goals && (
-              <S.ErrorMessage>
-                {errors.blueGoals[index].goals?.message}
-              </S.ErrorMessage>
-            )}
           </S.AddGoalsWrapper>
         ))}
         <Button
@@ -173,43 +177,47 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         <S.GoalsTitle>Gols pelo time vermelho</S.GoalsTitle>
         {redFieldArray.fields.map((field, index) => (
           <S.AddGoalsWrapper key={field.id}>
-            <S.Select
-              {...register(`redGoals.${index}.playerId`, {
-                required: "Selecione um jogador.",
-              })}
-            >
-              <S.Option value="">Selecionar jogador</S.Option>
-              {players.map((player) => (
-                <S.Option key={player.id} value={player.id}>
-                  {player.name}
-                </S.Option>
-              ))}
-            </S.Select>
-            {errors.redGoals?.[index]?.playerId && (
-              <S.ErrorMessage>
-                {errors.redGoals[index].playerId?.message}
-              </S.ErrorMessage>
-            )}
-            <S.GoalWrapper>
-              <Input
-                placeholder="Gols"
-                register={register(`redGoals.${index}.goals`, {
-                  required: "Digite os gols marcados.",
-                  pattern: {
-                    value: /^\d+$/,
-                    message: "O número de gols deve ser um valor numérico.",
-                  },
+            <S.InputWrapper>
+              <S.Select
+                {...register(`redGoals.${index}.playerId`, {
+                  required: "Selecione um jogador.",
                 })}
-              />
+              >
+                <S.Option value="">Selecionar jogador</S.Option>
+                {players.map((player) => (
+                  <S.Option key={player.id} value={player.id}>
+                    {player.name}
+                  </S.Option>
+                ))}
+              </S.Select>
+              {errors.redGoals?.[index]?.playerId && (
+                <S.ErrorMessage>
+                  {errors.redGoals[index].playerId?.message}
+                </S.ErrorMessage>
+              )}
+            </S.InputWrapper>
+            <S.GoalWrapper>
+              <S.InputWrapper>
+                <Input
+                  placeholder="Gols"
+                  register={register(`redGoals.${index}.goals`, {
+                    required: "Digite os gols.",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "O número de gols deve ser um valor numérico.",
+                    },
+                  })}
+                />
+                {errors.redGoals?.[index]?.goals && (
+                  <S.ErrorMessage>
+                    {errors.redGoals[index].goals?.message}
+                  </S.ErrorMessage>
+                )}
+              </S.InputWrapper>
               <Button onClick={() => redFieldArray.remove(index)}>
                 <Trash2 size={20} />
               </Button>
             </S.GoalWrapper>
-            {errors.redGoals?.[index]?.goals && (
-              <S.ErrorMessage>
-                {errors.redGoals[index].goals?.message}
-              </S.ErrorMessage>
-            )}
           </S.AddGoalsWrapper>
         ))}
         <Button

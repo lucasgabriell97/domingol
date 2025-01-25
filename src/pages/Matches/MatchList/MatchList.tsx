@@ -54,7 +54,7 @@ export const MatchList: React.FC<MatchListProps> = ({
                   <S.RedTeam></S.RedTeam>
                 </S.MatchWrapper>
                 <Button onClick={() => onDeleteMatchClick(match.id)}>
-                  <Trash2 size={20} />
+                  <Trash2 size={19} />
                 </Button>
               </S.ListItem>
             );

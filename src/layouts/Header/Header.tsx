@@ -8,7 +8,7 @@ import { NavLink } from "react-router";
 export const Header: React.FC = () => {
   return (
     <S.Header>
-      <S.HeaderWrapper className="container">
+      <S.HeaderWrapper>
         <NavLink to="/">
           <S.Logo src={Logo} alt="Logo da Domingol" />
         </NavLink>
@@ -18,10 +18,7 @@ export const Header: React.FC = () => {
             <S.ListItem>
               <NavLink
                 to="/"
-                style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#3f3f3f",
-                  fontWeight: isActive ? "600" : "500",
-                })}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Partidas
               </NavLink>
@@ -29,10 +26,7 @@ export const Header: React.FC = () => {
             <S.ListItem>
               <NavLink
                 to="/artilharia"
-                style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#3f3f3f",
-                  fontWeight: isActive ? "600" : "500",
-                })}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Artilharia
               </NavLink>
@@ -40,10 +34,7 @@ export const Header: React.FC = () => {
             <S.ListItem>
               <NavLink
                 to="/jogadores"
-                style={({ isActive }) => ({
-                  color: isActive ? "#000" : "#3f3f3f",
-                  fontWeight: isActive ? "600" : "500",
-                })}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Jogadores
               </NavLink>

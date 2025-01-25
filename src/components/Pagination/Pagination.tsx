@@ -36,7 +36,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         Página {currentPage} de {totalPages}
       </S.Pages>
       <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
-        <ChevronRight size={20} />
+        <ChevronRight size={19} />
       </Button>
     </S.PaginationWrapper>
   );

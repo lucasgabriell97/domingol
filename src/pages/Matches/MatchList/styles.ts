@@ -18,13 +18,17 @@ export const MatchWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 1rem;
+  gap: 0.75rem;
 
   background-color: var(--gray-400);
   border-radius: 5px;
 
   position: relative;
   padding: 1rem;
+
+  @media (width >= 768px) {
+    gap: 1rem;
+  }
 `
 
 export const Date = styled.span`
@@ -39,6 +43,10 @@ export const Date = styled.span`
   left: 5px;
   top: 5px;
   padding: 0.3rem;
+
+  @media (width >= 768px) {
+    font-size: 1.2rem;
+  }
 `
 
 export const BlueTeam = styled.span`
@@ -46,12 +54,20 @@ export const BlueTeam = styled.span`
   height: 20px;
   background-color: #3b82f6;
   border-radius: 5px;
+
+  @media (width >= 768px) {
+    width: 40px;
+  }
 `
 
 export const Result = styled.span`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--white);
+
+  @media (width >= 768px) {
+    font-size: 1.6rem;
+  }
 `
 
 export const RedTeam = styled(BlueTeam)`

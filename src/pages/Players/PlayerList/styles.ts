@@ -15,6 +15,7 @@ export const ListItem = styled.li`
 
 export const PlayerWrapper = styled.div`
   flex: 1;
+  align-content: center;
 
   background-color: var(--gray-400);
   border-radius: 5px;
@@ -23,7 +24,11 @@ export const PlayerWrapper = styled.div`
 `
 
 export const PlayerName = styled.p`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: var(--white);
+
+  @media (width >= 768px) {
+    font-size: 1.6rem;
+  }
 `

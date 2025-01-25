@@ -7,4 +7,8 @@ export const Title = styled.h1`
   text-align: center;
 
   margin-bottom: 2rem;
+
+  @media (width >= 768px) {
+    font-size: 2.4rem;
+  }
 `

@@ -6,7 +6,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: none;
   color: var(--white);
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
 
@@ -20,5 +20,9 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #4b5563;
+  }
+
+  @media (width >= 768px) {
+    font-size: 1.4rem;
   }
 `
