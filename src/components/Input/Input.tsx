@@ -3,17 +3,27 @@ import * as S from "./styles";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
+type InputProps = React.ComponentProps<"input"> & {
+  label: string;
+  id: string;
   register: UseFormRegisterReturn;
-}
+};
 
 export const Input: React.FC<InputProps> = ({
-  placeholder,
+  label,
+  id,
   register,
   ...rest
 }) => {
   return (
-    <S.Input type="text" placeholder={placeholder} {...register} {...rest} />
+    <>
+      <S.Label htmlFor={id}>{label}</S.Label>
+      <S.Input
+        id={id}
+        type="text"
+        {...register}
+        {...rest}
+      />
+    </>
   );
 };

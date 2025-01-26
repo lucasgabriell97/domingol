@@ -1,12 +1,12 @@
 import React from "react";
 
-export interface Player {
+export type Player = {
   id: string;
   name: string;
   goals: number;
 }
 
-interface PlayersContextValue {
+type PlayersContextValue = {
   players: Player[];
   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
 }

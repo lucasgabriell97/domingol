@@ -9,7 +9,7 @@ import { EmptyDataMessage } from "../../../components/EmptyDataMessage/EmptyData
 
 import { usePagination } from "../../../hooks/usePagination";
 
-interface MatchListProps {
+type MatchListProps = {
   matches: {
     id: string;
     blueScoreboard: number;

@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const Label = styled.label`
+  font-size: 1.2rem;
+  color: var(--gray-900);
+
+  display: inline-block;
+
+  &:nth-child(n + 2) {
+    margin-top: 0.75rem;
+  }
+
+  @media (width >= 768px) {
+    font-size: 1.4rem;
+  }
+`
+
 export const Input = styled.input`
   font-size: 1.2rem;
   width: 100%;

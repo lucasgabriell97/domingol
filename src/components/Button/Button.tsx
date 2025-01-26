@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-interface ButtonProps extends React.PropsWithChildren {
+type ButtonProps = React.PropsWithChildren & {
   onClick?: () => void;
   disabled?: boolean;
 }

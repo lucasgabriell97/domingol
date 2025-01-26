@@ -9,7 +9,7 @@ import { Title } from "../../components/Title/Title";
 
 import { PlayersContext } from "../../context/PlayersContext";
 
-interface Match {
+type Match = {
   id: string;
   blueScoreboard: number;
   redScoreboard: number;

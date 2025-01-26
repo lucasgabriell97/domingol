@@ -9,7 +9,7 @@ import { EmptyDataMessage } from "../../../components/EmptyDataMessage/EmptyData
 
 import { usePagination } from "../../../hooks/usePagination";
 
-interface PlayerListProps {
+type PlayerListProps = {
   players: {
     id: string;
     name: string;

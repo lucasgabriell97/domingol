@@ -11,10 +11,11 @@ export const Form = styled.form`
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem; 
+  gap: 0.5rem; 
 `
 
 export const ErrorMessage = styled.p`
   color: red;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 `

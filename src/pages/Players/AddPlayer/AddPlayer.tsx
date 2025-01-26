@@ -1,14 +1,18 @@
 import React from "react";
 import * as S from "./styles";
 
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 
-interface AddPlayerProps {
+type AddPlayerProps = {
   onAddPlayerSubmit: (name: string) => void;
-}
+};
+
+type Inputs = {
+  name: string;
+};
 
 export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
   const {
@@ -16,10 +20,10 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<{ name: string }>();
+  } = useForm<Inputs>();
 
-  const onSubmit = ({ name }: { name: string }) => {
-    onAddPlayerSubmit(name);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    onAddPlayerSubmit(data.name);
     reset({ name: "" });
   };
 
@@ -27,10 +31,12 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
     <S.Form className="content" onSubmit={handleSubmit(onSubmit)}>
       <S.InputWrapper>
         <Input
-          placeholder="Digite o nome do jogador"
+          id="name"
+          label="Nome"
           register={register("name", {
             required: "O nome é obrigatório.",
-            validate: (value) => value.trim() !== "" || "O nome não pode conter espaços vazios.",
+            validate: (value) =>
+              value.trim() !== "" || "O nome não pode conter espaços vazios.",
             pattern: {
               value: /^[a-zA-ZÀ-ÿ\s]+$/,
               message: "Apenas letras e espaços são permitidos.",
