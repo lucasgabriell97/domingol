@@ -7,10 +7,10 @@ import { PlayerList } from "./PlayerList/PlayerList";
 
 import { Title } from "../../components/Title/Title";
 
-import { PlayersContext } from "../../context/PlayersContext";
+import { usePlayers } from "../../context/PlayersContext";
 
 export const Players: React.FC = () => {
-  const {players, setPlayers} = React.useContext(PlayersContext);
+  const {players, setPlayers} = usePlayers();
 
   const onAddPlayerSubmit = (name: string) => {
     const newPlayer = {

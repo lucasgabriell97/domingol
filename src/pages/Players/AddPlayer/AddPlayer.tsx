@@ -10,7 +10,7 @@ type AddPlayerProps = {
   onAddPlayerSubmit: (name: string) => void;
 };
 
-type Inputs = {
+type FormInput = {
   name: string;
 };
 
@@ -20,9 +20,9 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<FormInput>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
     onAddPlayerSubmit(data.name);
     reset({ name: "" });
   };

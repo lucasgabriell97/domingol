@@ -6,7 +6,7 @@ export const Header = styled.header`
   -moz-box-shadow: 0px 8px 18px -12px rgba(0,0,0,0.24);
 `
 
-export const HeaderWrapper = styled.div`
+export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

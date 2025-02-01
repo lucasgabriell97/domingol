@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./styles";
 
-import { PlayersContext } from "../../context/PlayersContext";
+import { usePlayers } from "../../context/PlayersContext";
 
 import { Title } from "../../components/Title/Title";
 import { EmptyDataMessage } from "../../components/EmptyDataMessage/EmptyDataMessage";
 
 export const Goalscorer: React.FC = () => {
-  const { players } = React.useContext(PlayersContext);
+  const { players } = usePlayers();
 
   const playersGoals = players
     .filter((player) => player.goals > 0)

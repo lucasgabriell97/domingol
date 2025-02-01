@@ -53,6 +53,40 @@ export const AddGoalsWrapper = styled.div`
   gap: 1rem;
 `
 
+export const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`
+
+export const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  background-color: var(--gray-400);
+  border-radius: 5px;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+
+  padding: 1rem;
+
+  button {
+    display: flex;
+    align-items: center;
+
+    background-color: transparent;
+    padding: 0;
+    height: auto;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+`
+
 export const Select = styled.select`
   font-size: 1.2rem;
   height: 4.3rem;

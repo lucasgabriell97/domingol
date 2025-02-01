@@ -6,7 +6,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 type InputProps = React.ComponentProps<"input"> & {
   label: string;
   id: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
 };
 
 export const Input: React.FC<InputProps> = ({

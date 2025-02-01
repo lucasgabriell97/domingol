@@ -7,7 +7,7 @@ import { MatchList } from "./MatchList/MatchList";
 
 import { Title } from "../../components/Title/Title";
 
-import { PlayersContext } from "../../context/PlayersContext";
+import { usePlayers } from "../../context/PlayersContext";
 
 type Match = {
   id: string;
@@ -20,7 +20,7 @@ type Match = {
 
 export const Matches: React.FC = () => {
   const [matches, setMatches] = React.useState<Match[]>([]);
-  const { players, setPlayers } = React.useContext(PlayersContext);
+  const { players, setPlayers } = usePlayers();
 
   React.useEffect(() => {
     const storedMatches = localStorage.getItem("matches");

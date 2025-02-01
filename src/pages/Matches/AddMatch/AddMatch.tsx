@@ -1,12 +1,17 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Plus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
+
+type playersGoals = {
+  playerId: string;
+  goals: number;
+}[];
 
 type AddMatchProps = {
   players: {
@@ -18,8 +23,8 @@ type AddMatchProps = {
     blueScoreboard: number,
     redScoreboard: number,
     date: string,
-    blueGoals: { playerId: string; goals: number }[],
-    redGoals: { playerId: string; goals: number }[]
+    blueGoals: playersGoals,
+    redGoals: playersGoals
   ) => void;
 };
 
@@ -27,8 +32,6 @@ type FormValues = {
   blueScoreboard: string;
   redScoreboard: string;
   date: string;
-  blueGoals: { playerId: string; goals: string }[];
-  redGoals: { playerId: string; goals: string }[];
 };
 
 export const AddMatch: React.FC<AddMatchProps> = ({
@@ -38,35 +41,67 @@ export const AddMatch: React.FC<AddMatchProps> = ({
   const {
     register,
     handleSubmit,
-    control,
     reset,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      blueGoals: [{ playerId: "", goals: "" }],
-      redGoals: [{ playerId: "", goals: "" }],
-    },
-  });
+  } = useForm<FormValues>();
 
-  const blueFieldArray = useFieldArray({
-    control,
-    name: "blueGoals",
-  });
+  const [blueGoals, setBlueGoals] = React.useState<playersGoals>([]);
+  const [redGoals, setRedGoals] = React.useState<playersGoals>([]);
 
-  const redFieldArray = useFieldArray({
-    control,
-    name: "redGoals",
-  });
+  const [selectedBluePlayer, setSelectedBluePlayer] = React.useState("");
+  const [selectedRedPlayer, setSelectedRedPlayer] = React.useState("");
+  const [blueGoalsInput, setBlueGoalsInput] = React.useState("");
+  const [redGoalsInput, setRedGoalsInput] = React.useState("");
+
+  const addGoal = (team: "blue" | "red") => {
+    if (team === "blue" && selectedBluePlayer && blueGoalsInput) {
+      const newGoals = [...blueGoals];
+      const existingPlayer = newGoals.find(
+        (g) => g.playerId === selectedBluePlayer
+      );
+
+      if (existingPlayer) {
+        existingPlayer.goals = parseInt(blueGoalsInput);
+      } else {
+        newGoals.push({
+          playerId: selectedBluePlayer,
+          goals: parseInt(blueGoalsInput),
+        });
+      }
+
+      setBlueGoals(newGoals);
+      setSelectedBluePlayer("");
+      setBlueGoalsInput("");
+    } else if (team === "red" && selectedRedPlayer && redGoalsInput) {
+      const newGoals = [...redGoals];
+      const existingPlayer = newGoals.find(
+        (g) => g.playerId === selectedRedPlayer
+      );
+
+      if (existingPlayer) {
+        existingPlayer.goals = parseInt(redGoalsInput);
+      } else {
+        newGoals.push({
+          playerId: selectedRedPlayer,
+          goals: parseInt(redGoalsInput),
+        });
+      }
+
+      setRedGoals(newGoals);
+      setSelectedRedPlayer("");
+      setRedGoalsInput("");
+    }
+  };
+
+  const removeGoal = (team: "blue" | "red", playerId: string) => {
+    if (team === "blue") {
+      setBlueGoals(blueGoals.filter((goal) => goal.playerId !== playerId));
+    } else {
+      setRedGoals(redGoals.filter((goal) => goal.playerId !== playerId));
+    }
+  };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const blueGoals = data.blueGoals.map((goal) => ({
-      playerId: goal.playerId,
-      goals: parseInt(goal.goals),
-    }));
-    const redGoals = data.redGoals.map((goal) => ({
-      playerId: goal.playerId,
-      goals: parseInt(goal.goals),
-    }));
     onAddMatchSubmit(
       parseInt(data.blueScoreboard),
       parseInt(data.redScoreboard),
@@ -75,6 +110,8 @@ export const AddMatch: React.FC<AddMatchProps> = ({
       redGoals
     );
     reset();
+    setBlueGoals([]);
+    setRedGoals([]);
   };
 
   return (
@@ -125,75 +162,103 @@ export const AddMatch: React.FC<AddMatchProps> = ({
 
       <S.GoalsWrapper>
         <S.GoalsTitle>Gols pelo time azul</S.GoalsTitle>
-        {blueFieldArray.fields.map((field, index) => (
-          <S.AddGoalsWrapper key={field.id}>
-            <S.InputWrapper>
-              <S.Label htmlFor="blueGoal">Selecionar jogador</S.Label>
-              <S.Select
-                id="blueGoal"
-                {...register(`blueGoals.${index}.playerId`)}
-              >
-                <S.Option value="">Selecione</S.Option>
-                {players.map((player) => (
-                  <S.Option key={player.id} value={player.id}>
-                    {player.name}
-                  </S.Option>
-                ))}
-              </S.Select>
-            </S.InputWrapper>
 
-            <S.InputWrapper>
-              <Input
-                id="blueTeamGoal"
-                label="Gols marcados"
-                type="number"
-                register={register(`blueGoals.${index}.goals`)}
-              />
-            </S.InputWrapper>
-            <Button
-              onClick={() => blueFieldArray.append({ playerId: "", goals: "" })}
+        <S.AddGoalsWrapper>
+          <S.InputWrapper>
+            <S.Label htmlFor="blueGoal">Selecionar jogador</S.Label>
+            <S.Select
+              id="blueGoal"
+              value={selectedBluePlayer}
+              onChange={({ target }) => setSelectedBluePlayer(target.value)}
             >
-              <Plus size={19} />
-            </Button>
-          </S.AddGoalsWrapper>
-        ))}
+              <S.Option value="">Selecione</S.Option>
+              {players.map((player) => (
+                <S.Option key={player.id} value={player.id}>
+                  {player.name}
+                </S.Option>
+              ))}
+            </S.Select>
+          </S.InputWrapper>
+
+          <S.InputWrapper>
+            <Input
+              id="blueTeamGoal"
+              label="Gols marcados"
+              type="number"
+              value={blueGoalsInput}
+              onChange={({ target }) => setBlueGoalsInput(target.value)}
+            />
+          </S.InputWrapper>
+          <Button type="button" onClick={() => addGoal("blue")}>
+            <Plus size={19} />
+          </Button>
+        </S.AddGoalsWrapper>
+
+        <S.List>
+          {blueGoals.map((goal) => (
+            <S.ListItem key={goal.playerId}>
+              {players.find((player) => player.id === goal.playerId)?.name} -{" "}
+              {goal.goals} {goal.goals > 1 ? "gols" : "gol"}
+              <Button
+                type="button"
+                onClick={() => removeGoal("blue", goal.playerId)}
+              >
+                <X size={19} />
+              </Button>
+            </S.ListItem>
+          ))}
+        </S.List>
 
         <S.GoalsTitle>Gols pelo time vermelho</S.GoalsTitle>
-        {redFieldArray.fields.map((field, index) => (
-          <S.AddGoalsWrapper key={field.id}>
-            <S.InputWrapper>
-              <S.Label htmlFor="redGoal">Selecionar jogador</S.Label>
-              <S.Select
-                id="redGoal"
-                {...register(`redGoals.${index}.playerId`)}
-              >
-                <S.Option value="">Selecione</S.Option>
-                {players.map((player) => (
-                  <S.Option key={player.id} value={player.id}>
-                    {player.name}
-                  </S.Option>
-                ))}
-              </S.Select>
-            </S.InputWrapper>
 
-            <S.InputWrapper>
-              <Input
-                id="redTeamGoal"
-                label="Gols marcados"
-                type="number"
-                register={register(`redGoals.${index}.goals`)}
-              />
-            </S.InputWrapper>
-            <Button
-              onClick={() => redFieldArray.append({ playerId: "", goals: "" })}
+        <S.AddGoalsWrapper>
+          <S.InputWrapper>
+            <S.Label htmlFor="redGoal">Selecionar jogador</S.Label>
+            <S.Select
+              id="redGoal"
+              value={selectedRedPlayer}
+              onChange={({ target }) => setSelectedRedPlayer(target.value)}
             >
-              <Plus size={19} />
-            </Button>
-          </S.AddGoalsWrapper>
-        ))}
+              <S.Option value="">Selecione</S.Option>
+              {players.map((player) => (
+                <S.Option key={player.id} value={player.id}>
+                  {player.name}
+                </S.Option>
+              ))}
+            </S.Select>
+          </S.InputWrapper>
+
+          <S.InputWrapper>
+            <Input
+              id="redTeamGoal"
+              label="Gols marcados"
+              type="number"
+              value={redGoalsInput}
+              onChange={({ target }) => setRedGoalsInput(target.value)}
+            />
+          </S.InputWrapper>
+          <Button type="button" onClick={() => addGoal("red")}>
+            <Plus size={19} />
+          </Button>
+        </S.AddGoalsWrapper>
+
+        <S.List>
+          {redGoals.map((goal) => (
+            <S.ListItem key={goal.playerId}>
+              {players.find((player) => player.id === goal.playerId)?.name} -{" "}
+              {goal.goals} {goal.goals > 1 ? "gols" : "gol"}
+              <Button
+                type="button"
+                onClick={() => removeGoal("red", goal.playerId)}
+              >
+                <X size={19} />
+              </Button>
+            </S.ListItem>
+          ))}
+        </S.List>
       </S.GoalsWrapper>
 
-      <Button>Cadastrar Partida</Button>
+      <Button type="submit">Cadastrar Partida</Button>
     </S.Form>
   );
 };
