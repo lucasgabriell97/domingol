@@ -20,6 +20,14 @@ export const Header: React.FC = () => {
                 to="/"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
+                Jogadores
+              </NavLink>
+            </S.ListItem>
+            <S.ListItem>
+              <NavLink
+                to="/partidas"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Partidas
               </NavLink>
             </S.ListItem>
@@ -29,14 +37,6 @@ export const Header: React.FC = () => {
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Artilharia
-              </NavLink>
-            </S.ListItem>
-            <S.ListItem>
-              <NavLink
-                to="/jogadores"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Jogadores
               </NavLink>
             </S.ListItem>
           </S.List>

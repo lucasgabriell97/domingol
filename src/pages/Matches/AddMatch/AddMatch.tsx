@@ -28,7 +28,7 @@ type AddMatchProps = {
   ) => void;
 };
 
-type FormValues = {
+type FormInput = {
   blueScoreboard: string;
   redScoreboard: string;
   date: string;
@@ -43,7 +43,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormInput>();
 
   const [blueGoals, setBlueGoals] = React.useState<playersGoals>([]);
   const [redGoals, setRedGoals] = React.useState<playersGoals>([]);
@@ -54,7 +54,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
   const [redGoalsInput, setRedGoalsInput] = React.useState("");
 
   const addGoal = (team: "blue" | "red") => {
-    if (team === "blue" && selectedBluePlayer && blueGoalsInput) {
+    if (team === "blue" && selectedBluePlayer && blueGoalsInput > "0") {
       const newGoals = [...blueGoals];
       const existingPlayer = newGoals.find(
         (g) => g.playerId === selectedBluePlayer
@@ -72,7 +72,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
       setBlueGoals(newGoals);
       setSelectedBluePlayer("");
       setBlueGoalsInput("");
-    } else if (team === "red" && selectedRedPlayer && redGoalsInput) {
+    } else if (team === "red" && selectedRedPlayer && redGoalsInput > "0") {
       const newGoals = [...redGoals];
       const existingPlayer = newGoals.find(
         (g) => g.playerId === selectedRedPlayer
@@ -101,7 +101,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
     }
   };
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
     onAddMatchSubmit(
       parseInt(data.blueScoreboard),
       parseInt(data.redScoreboard),
@@ -115,92 +115,86 @@ export const AddMatch: React.FC<AddMatchProps> = ({
   };
 
   return (
-    <S.Form className="content" onSubmit={handleSubmit(onSubmit)}>
-      <S.InputWrapper>
-        <Input
-          id="blueScoreboard"
-          label="Placar do time azul"
-          register={register("blueScoreboard", {
-            required: "O campo é obrigatório.",
-            validate: (value) =>
-              value.trim() !== "" || "O campo não pode conter espaços vazios.",
-            pattern: {
-              value: /^\d+$/,
-              message: "O placar deve conter apenas números.",
-            },
-          })}
-        />
-        {errors.blueScoreboard && (
-          <S.ErrorMessage>{errors.blueScoreboard.message}</S.ErrorMessage>
-        )}
-        <Input
-          id="redScoreboard"
-          label="Placar do time vermelho"
-          register={register("redScoreboard", {
-            required: "O campo é obrigatório.",
-            validate: (value) =>
-              value.trim() !== "" || "O campo não pode conter espaços vazios.",
-            pattern: {
-              value: /^\d+$/,
-              message: "O placar deve conter apenas números.",
-            },
-          })}
-        />
-        {errors.redScoreboard && (
-          <S.ErrorMessage>{errors.redScoreboard.message}</S.ErrorMessage>
-        )}
-        <Input
-          id="date"
-          label="Data da partida"
-          type="date"
-          register={register("date", {
-            required: "O campo é obrigatório.",
-          })}
-        />
-        {errors.date && <S.ErrorMessage>{errors.date.message}</S.ErrorMessage>}
-      </S.InputWrapper>
+    <S.Form className="box" onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        id="blueScoreboard"
+        label="Placar do time azul"
+        register={register("blueScoreboard", {
+          required: "O campo é obrigatório.",
+          validate: (value) =>
+            value.trim() !== "" || "O campo não pode conter espaços vazios.",
+          pattern: {
+            value: /^\d+$/,
+            message: "O campo deve conter apenas números.",
+          },
+        })}
+      />
+      {errors.blueScoreboard && (
+        <S.ErrorMessage>{errors.blueScoreboard.message}</S.ErrorMessage>
+      )}
+      <Input
+        id="redScoreboard"
+        label="Placar do time vermelho"
+        register={register("redScoreboard", {
+          required: "O campo é obrigatório.",
+          validate: (value) =>
+            value.trim() !== "" || "O campo não pode conter espaços vazios.",
+          pattern: {
+            value: /^\d+$/,
+            message: "O campo deve conter apenas números.",
+          },
+        })}
+      />
+      {errors.redScoreboard && (
+        <S.ErrorMessage>{errors.redScoreboard.message}</S.ErrorMessage>
+      )}
+      <Input
+        id="date"
+        label="Data da partida"
+        type="date"
+        register={register("date", {
+          required: "O campo é obrigatório.",
+        })}
+      />
+      {errors.date && <S.ErrorMessage>{errors.date.message}</S.ErrorMessage>}
 
-      <S.GoalsWrapper>
-        <S.GoalsTitle>Gols pelo time azul</S.GoalsTitle>
-
-        <S.AddGoalsWrapper>
-          <S.InputWrapper>
-            <S.Label htmlFor="blueGoal">Selecionar jogador</S.Label>
-            <S.Select
-              id="blueGoal"
-              value={selectedBluePlayer}
-              onChange={({ target }) => setSelectedBluePlayer(target.value)}
-            >
-              <S.Option value="">Selecione</S.Option>
-              {players.map((player) => (
-                <S.Option key={player.id} value={player.id}>
-                  {player.name}
-                </S.Option>
-              ))}
-            </S.Select>
-          </S.InputWrapper>
-
-          <S.InputWrapper>
-            <Input
-              id="blueTeamGoal"
-              label="Gols marcados"
-              type="number"
-              value={blueGoalsInput}
-              onChange={({ target }) => setBlueGoalsInput(target.value)}
-            />
-          </S.InputWrapper>
-          <Button type="button" onClick={() => addGoal("blue")}>
+      <S.AddGoalsWrapper>
+        <S.InputWrapper>
+          <S.Label htmlFor="blueGoal">Jogador do time azul</S.Label>
+          <S.Select
+            id="blueGoal"
+            value={selectedBluePlayer}
+            onChange={({ target }) => setSelectedBluePlayer(target.value)}
+          >
+            <S.Option value="">Selecione</S.Option>
+            {players.map((player) => (
+              <S.Option key={player.id} value={player.id}>
+                {player.name}
+              </S.Option>
+            ))}
+          </S.Select>
+        </S.InputWrapper>
+        <S.GoalsWrapper>
+          <Input
+            id="blueTeamGoal"
+            label="Gols marcados"
+            type="number"
+            value={blueGoalsInput}
+            onChange={({ target }) => setBlueGoalsInput(target.value)}
+          />
+          <Button onClick={() => addGoal("blue")}>
             <Plus size={19} />
           </Button>
-        </S.AddGoalsWrapper>
-
+        </S.GoalsWrapper>
+      </S.AddGoalsWrapper>
+      {blueGoals.length > 0 && (
         <S.List>
           {blueGoals.map((goal) => (
             <S.ListItem key={goal.playerId}>
               {players.find((player) => player.id === goal.playerId)?.name} -{" "}
               {goal.goals} {goal.goals > 1 ? "gols" : "gol"}
               <Button
-                type="button"
+                variant="secondary"
                 onClick={() => removeGoal("blue", goal.playerId)}
               >
                 <X size={19} />
@@ -208,47 +202,46 @@ export const AddMatch: React.FC<AddMatchProps> = ({
             </S.ListItem>
           ))}
         </S.List>
+      )}
 
-        <S.GoalsTitle>Gols pelo time vermelho</S.GoalsTitle>
+      <S.AddGoalsWrapper>
+        <S.InputWrapper>
+          <S.Label htmlFor="redGoal">Jogador do time vermelho</S.Label>
+          <S.Select
+            id="redGoal"
+            value={selectedRedPlayer}
+            onChange={({ target }) => setSelectedRedPlayer(target.value)}
+          >
+            <S.Option value="">Selecione</S.Option>
+            {players.map((player) => (
+              <S.Option key={player.id} value={player.id}>
+                {player.name}
+              </S.Option>
+            ))}
+          </S.Select>
+        </S.InputWrapper>
+        <S.GoalsWrapper>
+          <Input
+            id="redTeamGoal"
+            label="Gols marcados"
+            type="number"
+            value={redGoalsInput}
+            onChange={({ target }) => setRedGoalsInput(target.value)}
+          />
 
-        <S.AddGoalsWrapper>
-          <S.InputWrapper>
-            <S.Label htmlFor="redGoal">Selecionar jogador</S.Label>
-            <S.Select
-              id="redGoal"
-              value={selectedRedPlayer}
-              onChange={({ target }) => setSelectedRedPlayer(target.value)}
-            >
-              <S.Option value="">Selecione</S.Option>
-              {players.map((player) => (
-                <S.Option key={player.id} value={player.id}>
-                  {player.name}
-                </S.Option>
-              ))}
-            </S.Select>
-          </S.InputWrapper>
-
-          <S.InputWrapper>
-            <Input
-              id="redTeamGoal"
-              label="Gols marcados"
-              type="number"
-              value={redGoalsInput}
-              onChange={({ target }) => setRedGoalsInput(target.value)}
-            />
-          </S.InputWrapper>
           <Button type="button" onClick={() => addGoal("red")}>
             <Plus size={19} />
           </Button>
-        </S.AddGoalsWrapper>
-
+        </S.GoalsWrapper>
+      </S.AddGoalsWrapper>
+      {redGoals.length > 0 && (
         <S.List>
           {redGoals.map((goal) => (
             <S.ListItem key={goal.playerId}>
               {players.find((player) => player.id === goal.playerId)?.name} -{" "}
               {goal.goals} {goal.goals > 1 ? "gols" : "gol"}
               <Button
-                type="button"
+                variant="secondary"
                 onClick={() => removeGoal("red", goal.playerId)}
               >
                 <X size={19} />
@@ -256,7 +249,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
             </S.ListItem>
           ))}
         </S.List>
-      </S.GoalsWrapper>
+      )}
 
       <Button type="submit">Cadastrar Partida</Button>
     </S.Form>

@@ -28,25 +28,24 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
   };
 
   return (
-    <S.Form className="content" onSubmit={handleSubmit(onSubmit)}>
-      <S.InputWrapper>
-        <Input
-          id="name"
-          label="Nome"
-          register={register("name", {
-            required: "O nome é obrigatório.",
-            validate: (value) =>
-              value.trim() !== "" || "O nome não pode conter espaços vazios.",
-            pattern: {
-              value: /^[a-zA-ZÀ-ÿ\s]+$/,
-              message: "Apenas letras e espaços são permitidos.",
-            },
-          })}
-        />
-        {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
-      </S.InputWrapper>
+    <S.Form className="box" onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        id="name"
+        label="Nome"
+        register={register("name", {
+          required: "O nome é obrigatório.",
+          validate: (value) =>
+            value.trim() !== "" || "O nome não pode conter espaços vazios.",
+          pattern: {
+            value: /^[a-zA-ZÀ-ÿ\s]+$/,
+            message: "Apenas letras e espaços são permitidos.",
+          },
+        })}
+        autoComplete="name"
+      />
+      {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
 
-      <Button>Cadastrar Jogador</Button>
+      <Button type="submit">Cadastrar Jogador</Button>
     </S.Form>
   );
 };

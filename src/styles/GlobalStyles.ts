@@ -50,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
   }
 
-  .content {
+  .box {
     background-color: var(--gray-200);
     border: 3px solid var(--gray-300);
     border-radius: 5px;

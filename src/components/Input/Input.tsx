@@ -16,14 +16,9 @@ export const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   return (
-    <>
+    <S.InputWrapper>
       <S.Label htmlFor={id}>{label}</S.Label>
-      <S.Input
-        id={id}
-        type="text"
-        {...register}
-        {...rest}
-      />
-    </>
+      <S.Input id={id} type="text" {...register} {...rest} />
+    </S.InputWrapper>
   );
 };

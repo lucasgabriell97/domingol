@@ -31,7 +31,7 @@ export const PlayerList: React.FC<PlayerListProps> = ({
 
   return (
     <>
-      <S.List className="content">
+      <S.List className="box">
         {currentItems.length === 0 ? (
           <EmptyDataMessage>
             Nenhum jogador cadastrado no momento.

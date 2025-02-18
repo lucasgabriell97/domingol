@@ -11,7 +11,6 @@ createRoot(root!).render(
     <BrowserRouter>
       <GlobalStyles />
       <App />
-
     </BrowserRouter>
   </StrictMode>
 );
