@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router"
 
 export const List = styled.ul`
   display: flex;
@@ -73,3 +74,16 @@ export const Result = styled.span`
 export const RedTeam = styled(BlueTeam)`
   background-color: #ef4444;
 `
+
+export const StyledLink = styled(Link)`
+  height: 4.3rem;
+  background-color: var(--gray-500);
+  color: var(--white);
+  border-radius: 5px;
+  padding: 1rem;
+  transition: background-color .3s;
+  
+  &:hover {
+    background-color: #4b5563;
+  }
+` 

@@ -8,7 +8,6 @@ import { Pagination } from "../../../components/Pagination/Pagination";
 import { EmptyDataMessage } from "../../../components/EmptyDataMessage/EmptyDataMessage";
 
 import { usePagination } from "../../../hooks/usePagination";
-import { Link } from "react-router";
 
 type MatchListProps = {
   matches: {
@@ -54,9 +53,9 @@ export const MatchList: React.FC<MatchListProps> = ({
                   </S.Result>
                   <S.RedTeam></S.RedTeam>
                 </S.MatchWrapper>
-                <Link to={`/partida/${match.id}`}>
+                <S.StyledLink to={`/partida/${match.id}`}>
                   <ChevronRight size={19} />
-                </Link>
+                </S.StyledLink>
                 <Button onClick={() => onDeleteMatchClick(match.id)}>
                   <Trash2 size={19} />
                 </Button>

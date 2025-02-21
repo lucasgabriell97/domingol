@@ -11,6 +11,7 @@ import { Button } from "../../../components/Button/Button";
 type playersGoals = {
   playerId: string;
   goals: number;
+  name: string;
 }[];
 
 type AddMatchProps = {
@@ -66,6 +67,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         newGoals.push({
           playerId: selectedBluePlayer,
           goals: parseInt(blueGoalsInput),
+          name: players.find((player) => player.id === selectedBluePlayer)?.name || ""
         });
       }
 
@@ -84,6 +86,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         newGoals.push({
           playerId: selectedRedPlayer,
           goals: parseInt(redGoalsInput),
+          name: players.find((player) => player.id === selectedRedPlayer)?.name || ""
         });
       }
 

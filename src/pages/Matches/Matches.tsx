@@ -33,8 +33,8 @@ export const Matches: React.FC = () => {
     blueScoreboard: number,
     redScoreboard: number,
     date: string,
-    blueGoals: { playerId: string; goals: number }[],
-    redGoals: { playerId: string; goals: number }[]
+    blueGoals: { playerId: string; goals: number, name: string }[],
+    redGoals: { playerId: string; goals: number, name: string }[]
   ) => {
     const newMatch = {
       id: uuidv4(),
