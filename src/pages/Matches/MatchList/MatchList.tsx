@@ -17,7 +17,7 @@ type MatchListProps = {
     date: string;
   }[];
   onDeleteMatchClick: (matchId: string) => void;
-}
+};
 
 export const MatchList: React.FC<MatchListProps> = ({
   matches,
@@ -32,7 +32,7 @@ export const MatchList: React.FC<MatchListProps> = ({
 
   return (
     <>
-      <S.List className="box">
+      <S.MatchList className="box">
         {currentItems.length === 0 ? (
           <EmptyDataMessage>
             Nenhuma partida cadastrada no momento.
@@ -44,26 +44,28 @@ export const MatchList: React.FC<MatchListProps> = ({
             ).toLocaleDateString("pt-BR");
 
             return (
-              <S.ListItem key={match.id}>
-                <S.MatchWrapper>
-                  <S.Date>{formattedDate}</S.Date>
-                  <S.BlueTeam></S.BlueTeam>
-                  <S.Result>
-                    {match.blueScoreboard} x {match.redScoreboard}
-                  </S.Result>
-                  <S.RedTeam></S.RedTeam>
-                </S.MatchWrapper>
+              <S.MatchListItem key={match.id}>
+                <S.MatchContainer>
+                  <S.MatchDate>{formattedDate}</S.MatchDate>
+                  <S.ScoreBox $team="blue">
+                    <S.ScoreNumber>{match.blueScoreboard}</S.ScoreNumber>
+                  </S.ScoreBox>
+                  <S.VersusText>-</S.VersusText>
+                  <S.ScoreBox $team="red">
+                    <S.ScoreNumber>{match.redScoreboard}</S.ScoreNumber>
+                  </S.ScoreBox>
+                </S.MatchContainer>
                 <S.StyledLink to={`/partida/${match.id}`}>
                   <ChevronRight size={19} />
                 </S.StyledLink>
                 <Button onClick={() => onDeleteMatchClick(match.id)}>
                   <Trash2 size={19} />
                 </Button>
-              </S.ListItem>
+              </S.MatchListItem>
             );
           })
         )}
-      </S.List>
+      </S.MatchList>
 
       <Pagination
         currentPage={currentPage}

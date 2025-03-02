@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router"
 
-export const List = styled.ul`
+export const MatchList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -9,12 +9,12 @@ export const List = styled.ul`
   margin-bottom: 2rem;
 `
 
-export const ListItem = styled.li`
+export const MatchListItem = styled.li`
   display: flex;
   gap: 1rem;
 `
 
-export const MatchWrapper = styled.div`
+export const MatchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,14 +25,13 @@ export const MatchWrapper = styled.div`
   border-radius: 5px;
 
   position: relative;
-  padding: 1rem;
 
   @media (width >= 768px) {
     gap: 1rem;
   }
 `
 
-export const Date = styled.span`
+export const MatchDate = styled.p`
   background-color: var(--gray-900);
   border-radius: 5px;
   
@@ -41,27 +40,37 @@ export const Date = styled.span`
   color: var(--white);
 
   position: absolute;
-  left: 5px;
-  top: 5px;
-  padding: 0.3rem;
+  left: center;
+  top: -8px;
+  padding: 0.2rem;
+
+  @media (width >= 500px) {
+    left: 5px;
+    top: 5px;
+  }
 
   @media (width >= 768px) {
     font-size: 1.2rem;
+    padding: 0.3rem;
   }
 `
 
-export const BlueTeam = styled.span`
-  width: 20px;
-  height: 20px;
-  background-color: #3b82f6;
+export const ScoreBox = styled.div<{ $team: "blue" | "red" }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${({ $team }) => ($team === "blue" ? "#3b82f6" : "#ef4444")};
   border-radius: 5px;
 
+  padding: 0rem 1rem;
+
   @media (width >= 768px) {
-    width: 40px;
+    padding: 0.4rem 2rem;
   }
 `
 
-export const Result = styled.span`
+export const ScoreNumber = styled.span`
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--white);
@@ -71,9 +80,11 @@ export const Result = styled.span`
   }
 `
 
-export const RedTeam = styled(BlueTeam)`
-  background-color: #ef4444;
-`
+export const VersusText = styled.span`
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+`;
 
 export const StyledLink = styled(Link)`
   height: 4.3rem;

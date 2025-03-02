@@ -6,7 +6,7 @@ export const MatchCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 `
 
 export const MatchDate = styled.p`
