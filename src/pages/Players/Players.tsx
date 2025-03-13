@@ -10,28 +10,38 @@ import { Title } from "../../components/Title/Title";
 import { usePlayers } from "../../context/PlayersContext";
 
 export const Players: React.FC = () => {
-  const {players, setPlayers} = usePlayers();
+  const { players, setPlayers } = usePlayers();
 
   const onAddPlayerSubmit = (name: string) => {
-    const newPlayer = {
-      id: uuidv4(),
-      name,
-      goals: 0
-    };
+    const playerExists = players.some(
+      (player) => player.name.trim().toLowerCase() === name.trim().toLowerCase()
+    );
 
-    const updatedPlayers = [...players, newPlayer];
-    setPlayers(updatedPlayers);
-    localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    if (playerExists) {
+      alert("Este jogador já está na lista! Escolha outro nome.");
+    } else {
+      const newPlayer = {
+        id: uuidv4(),
+        name,
+        goals: 0,
+      };
+
+      const updatedPlayers = [...players, newPlayer];
+      setPlayers(updatedPlayers);
+      localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    }
   };
 
   const onDeletePlayerClick = (playerId: string) => {
-    const updatedPlayers = players.filter((player) => player.id !== playerId);
-    setPlayers(updatedPlayers);
-    localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    if (confirm("Tem certeza que deseja remover este jogador?") == true) {
+      const updatedPlayers = players.filter((player) => player.id !== playerId);
+      setPlayers(updatedPlayers);
+      localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    }
   };
 
   return (
-    <S.Main className="container">
+    <S.PlayersMain className="container">
       <S.PlayersSection>
         <AddPlayer onAddPlayerSubmit={onAddPlayerSubmit} />
 
@@ -41,6 +51,6 @@ export const Players: React.FC = () => {
           onDeletePlayerClick={onDeletePlayerClick}
         />
       </S.PlayersSection>
-    </S.Main>
+    </S.PlayersMain>
   );
 };

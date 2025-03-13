@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const List = styled.ul`
+export const PlayersList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -8,12 +8,12 @@ export const List = styled.ul`
   margin-bottom: 2rem;
 `
 
-export const ListItem = styled.li`
+export const PlayersListItem = styled.li`
   display: flex;
   gap: 1rem;
 `
 
-export const PlayerWrapper = styled.div`
+export const PlayerContainer = styled.div`
   flex: 1;
   align-content: center;
 

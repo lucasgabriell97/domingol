@@ -27,9 +27,9 @@ export const Logo = styled.img`
   width: 7rem;
 `
 
-export const Nav = styled.nav``
+export const Navbar = styled.nav``
 
-export const List = styled.ul`
+export const LinkList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@ export const List = styled.ul`
   }
 `
 
-export const ListItem = styled.li`
+export const LinkListItem = styled.li`
   font-size: 1.4rem;
 
   @media (width >= 768px) {

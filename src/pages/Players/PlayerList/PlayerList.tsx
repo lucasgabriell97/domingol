@@ -31,27 +31,27 @@ export const PlayerList: React.FC<PlayerListProps> = ({
 
   return (
     <>
-      <S.List className="box">
+      <S.PlayersList className="box">
         {currentItems.length === 0 ? (
           <EmptyDataMessage>
             Nenhum jogador cadastrado no momento.
           </EmptyDataMessage>
         ) : (
           currentItems.map((player) => (
-            <S.ListItem key={player.id}>
-              <S.PlayerWrapper>
+            <S.PlayersListItem key={player.id}>
+              <S.PlayerContainer>
                 <S.PlayerName>{player.name}</S.PlayerName>
-              </S.PlayerWrapper>
+              </S.PlayerContainer>
               <Button>
                 <Pencil size={19} />
               </Button>
               <Button onClick={() => onDeletePlayerClick(player.id)}>
                 <Trash2 size={19} />
               </Button>
-            </S.ListItem>
+            </S.PlayersListItem>
           ))
         )}
-      </S.List>
+      </S.PlayersList>
 
       <Pagination
         currentPage={currentPage}

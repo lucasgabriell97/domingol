@@ -13,34 +13,34 @@ export const Header: React.FC = () => {
           <S.Logo src={Logo} alt="Logo da Domingol" />
         </NavLink>
 
-        <S.Nav>
-          <S.List>
-            <S.ListItem>
+        <S.Navbar>
+          <S.LinkList>
+            <S.LinkListItem>
               <NavLink
                 to="/"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Jogadores
               </NavLink>
-            </S.ListItem>
-            <S.ListItem>
+            </S.LinkListItem>
+            <S.LinkListItem>
               <NavLink
                 to="/partidas"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Partidas
               </NavLink>
-            </S.ListItem>
-            <S.ListItem>
+            </S.LinkListItem>
+            <S.LinkListItem>
               <NavLink
                 to="/artilharia"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Artilharia
               </NavLink>
-            </S.ListItem>
-          </S.List>
-        </S.Nav>
+            </S.LinkListItem>
+          </S.LinkList>
+        </S.Navbar>
       </S.HeaderContainer>
     </S.Header>
   );

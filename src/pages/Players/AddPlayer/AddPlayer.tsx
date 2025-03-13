@@ -28,7 +28,7 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
   };
 
   return (
-    <S.Form className="box" onSubmit={handleSubmit(onSubmit)}>
+    <S.PlayerForm className="box" onSubmit={handleSubmit(onSubmit)}>
       <Input
         id="name"
         label="Nome"
@@ -46,6 +46,6 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
       {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
 
       <Button type="submit">Cadastrar Jogador</Button>
-    </S.Form>
+    </S.PlayerForm>
   );
 };
