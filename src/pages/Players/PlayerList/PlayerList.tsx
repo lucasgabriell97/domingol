@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Pencil, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
 import { Pagination } from "../../../components/Pagination/Pagination";
@@ -42,9 +42,6 @@ export const PlayerList: React.FC<PlayerListProps> = ({
               <S.PlayerContainer>
                 <S.PlayerName>{player.name}</S.PlayerName>
               </S.PlayerContainer>
-              <Button>
-                <Pencil size={19} />
-              </Button>
               <Button onClick={() => onDeletePlayerClick(player.id)}>
                 <Trash2 size={19} />
               </Button>

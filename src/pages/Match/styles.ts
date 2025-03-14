@@ -92,6 +92,7 @@ export const GoalsList = styled.ul`
 
 export const GoalListItem = styled.li`
   font-size: 1.2rem;
+  text-transform: capitalize;
   line-height: 1.4;
 
   @media (width >= 768px) {

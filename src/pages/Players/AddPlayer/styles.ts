@@ -8,9 +8,9 @@ export const PlayerForm = styled.form`
 `
 
 export const ErrorMessage = styled.p`
-  color: red;
   font-size: 1.2rem;
   font-weight: 500;
+  color: #ef4444;
 
   margin-bottom: 1.25rem;
 

@@ -48,4 +48,5 @@ export const Tbody = styled.tbody`
 
 export const Td = styled(Th)`
   font-weight: 500;
+  text-transform: capitalize;
 `

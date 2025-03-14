@@ -16,7 +16,7 @@ type Match = {
   date: string;
   blueGoals: { playerId: string; goals: number }[];
   redGoals: { playerId: string; goals: number }[];
-}
+};
 
 export const Matches: React.FC = () => {
   const [matches, setMatches] = React.useState<Match[]>([]);
@@ -33,8 +33,8 @@ export const Matches: React.FC = () => {
     blueScoreboard: number,
     redScoreboard: number,
     date: string,
-    blueGoals: { playerId: string; goals: number, name: string }[],
-    redGoals: { playerId: string; goals: number, name: string }[]
+    blueGoals: { playerId: string; goals: number; name: string }[],
+    redGoals: { playerId: string; goals: number; name: string }[]
   ) => {
     const newMatch = {
       id: uuidv4(),
@@ -42,7 +42,7 @@ export const Matches: React.FC = () => {
       redScoreboard,
       date,
       blueGoals,
-      redGoals
+      redGoals,
     };
 
     const updateMatches = [...matches, newMatch];
@@ -64,32 +64,38 @@ export const Matches: React.FC = () => {
   };
 
   const onDeleteMatchClick = (matchId: string) => {
-    const updatedMatches = matches.filter((match) => match.id !== matchId);
-    setMatches(updatedMatches);
-    localStorage.setItem("matches", JSON.stringify(updatedMatches));
+    if (confirm("Tem certeza que deseja remover esta partida?") == true) {
+      const updatedMatches = matches.filter((match) => match.id !== matchId);
+      setMatches(updatedMatches);
+      localStorage.setItem("matches", JSON.stringify(updatedMatches));
 
-    const matchToDelete = matches.find((match) => match.id === matchId);
+      const matchToDelete = matches.find((match) => match.id === matchId);
 
-    if (matchToDelete) {
-      const updatedPlayers = players.map((player) => {
-        const blueGoal = matchToDelete.blueGoals.find((goal) => goal.playerId === player.id);
-        const redGoal = matchToDelete.redGoals.find((goal) => goal.playerId === player.id);
+      if (matchToDelete) {
+        const updatedPlayers = players.map((player) => {
+          const blueGoal = matchToDelete.blueGoals.find(
+            (goal) => goal.playerId === player.id
+          );
+          const redGoal = matchToDelete.redGoals.find(
+            (goal) => goal.playerId === player.id
+          );
 
-        const totalGoalsToRemove =
-          (blueGoal?.goals || 0) + (redGoal?.goals || 0);
+          const totalGoalsToRemove =
+            (blueGoal?.goals || 0) + (redGoal?.goals || 0);
 
-        return totalGoalsToRemove > 0
-          ? { ...player, goals: player.goals - totalGoalsToRemove }
-          : player;
-      });
+          return totalGoalsToRemove > 0
+            ? { ...player, goals: player.goals - totalGoalsToRemove }
+            : player;
+        });
 
-      setPlayers(updatedPlayers);
-      localStorage.setItem("players", JSON.stringify(updatedPlayers));
+        setPlayers(updatedPlayers);
+        localStorage.setItem("players", JSON.stringify(updatedPlayers));
+      }
     }
   };
 
   return (
-    <S.Main className="container">
+    <S.MatchesMain className="container">
       <S.MatchesSection>
         <AddMatch players={players} onAddMatchSubmit={onAddMatchSubmit} />
 
@@ -97,6 +103,6 @@ export const Matches: React.FC = () => {
 
         <MatchList matches={matches} onDeleteMatchClick={onDeleteMatchClick} />
       </S.MatchesSection>
-    </S.Main>
+    </S.MatchesMain>
   );
 };

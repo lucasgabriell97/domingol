@@ -118,7 +118,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
   };
 
   return (
-    <S.Form className="box" onSubmit={handleSubmit(onSubmit)}>
+    <S.MatchForm className="box" onSubmit={handleSubmit(onSubmit)}>
       <Input
         id="blueScoreboard"
         label="Placar do time azul"
@@ -163,7 +163,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
 
       <S.AddGoalsWrapper>
         <S.InputWrapper>
-          <S.Label htmlFor="blueGoal">Jogador do time azul</S.Label>
+          <S.Label htmlFor="blueGoal">Gols pelo time azul</S.Label>
           <S.Select
             id="blueGoal"
             value={selectedBluePlayer}
@@ -180,7 +180,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         <S.GoalsWrapper>
           <Input
             id="blueTeamGoal"
-            label="Gols marcados"
+            label="Quantidade de gols"
             type="number"
             value={blueGoalsInput}
             onChange={({ target }) => setBlueGoalsInput(target.value)}
@@ -209,7 +209,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
 
       <S.AddGoalsWrapper>
         <S.InputWrapper>
-          <S.Label htmlFor="redGoal">Jogador do time vermelho</S.Label>
+          <S.Label htmlFor="redGoal">Gols pelo time vermelho</S.Label>
           <S.Select
             id="redGoal"
             value={selectedRedPlayer}
@@ -226,7 +226,7 @@ export const AddMatch: React.FC<AddMatchProps> = ({
         <S.GoalsWrapper>
           <Input
             id="redTeamGoal"
-            label="Gols marcados"
+            label="Quantidade de gols"
             type="number"
             value={redGoalsInput}
             onChange={({ target }) => setRedGoalsInput(target.value)}
@@ -255,6 +255,6 @@ export const AddMatch: React.FC<AddMatchProps> = ({
       )}
 
       <Button type="submit">Cadastrar Partida</Button>
-    </S.Form>
+    </S.MatchForm>
   );
 };

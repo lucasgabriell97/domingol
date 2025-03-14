@@ -26,6 +26,7 @@ export const PlayerContainer = styled.div`
 export const PlayerName = styled.p`
   font-size: 1.4rem;
   font-weight: 500;
+  text-transform: capitalize;
   color: var(--white);
 
   @media (width >= 768px) {

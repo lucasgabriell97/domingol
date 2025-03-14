@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Form = styled.form`
+export const MatchForm = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -51,6 +51,7 @@ export const Select = styled.select`
   width: 100%;
   height: 4.3rem;
   font-size: 1.4rem;
+  text-transform: capitalize;
   border-radius: 5px;
   border: 1px solid var(--gray-500);
 
@@ -94,6 +95,7 @@ export const ListItem = styled.li`
 
   font-size: 1.2rem;
   font-weight: 600;
+  text-transform: capitalize;
   color: var(--white);
 
   padding: 1rem;
