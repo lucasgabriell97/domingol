@@ -20,6 +20,14 @@ export const Header: React.FC = () => {
                 to="/"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
+                Início
+              </NavLink>
+            </S.LinkListItem>
+            <S.LinkListItem>
+              <NavLink
+                to="/jogadores"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Jogadores
               </NavLink>
             </S.LinkListItem>

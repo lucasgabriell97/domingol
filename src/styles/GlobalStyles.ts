@@ -45,6 +45,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .container {
+    width: 100%;
     padding: 4rem 2.4rem;
     max-width: 700px;
     margin: 0 auto;
@@ -56,5 +57,15 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 5px;
 
     padding: 1.5rem;
+  }
+
+  #root {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
   }
 `
