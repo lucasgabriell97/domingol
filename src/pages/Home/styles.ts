@@ -5,7 +5,7 @@ export const HomeMain = styled.main`
 
     @media (width >= 768px) {
       padding: 10rem 2.4rem 4rem 2.4rem !important;
-      max-width: 1000px !important;
+      max-width: 1216px !important;
     }
 `
 
@@ -19,6 +19,7 @@ export const IntroductionHome = styled.div`
   
   @media (width >= 1024px) {
     flex-direction: row;
+    justify-content: space-between;
     gap: 10rem;
   }
 `

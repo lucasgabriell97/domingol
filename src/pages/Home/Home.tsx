@@ -16,9 +16,7 @@ export const Home: React.FC = () => {
           <S.IntroductionContainer>
             <S.IntroductionTitle>Bem vindo ao Domingol!</S.IntroductionTitle>
             <S.IntroductionDescription>
-              Gerencie seus jogadores com facilidade, registre as partidas
-              realizadas e acompanhe em tempo real as estatísticas geradas ao
-              decorrer de cada partida.
+              Gerencie seus jogadores com facilidade, registre as partidas realizadas e acompanhe em tempo real as estatísticas geradas ao longo de cada partida.
             </S.IntroductionDescription>
           </S.IntroductionContainer>
         </S.IntroductionHome>
