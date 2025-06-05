@@ -6,7 +6,7 @@ type ButtonProps = React.PropsWithChildren &
     onClick?: () => void;
     disabled?: boolean;
     type?: "button" | "submit";
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "success" | "outline";
   };
 
 export const Button: React.FC<ButtonProps> = ({

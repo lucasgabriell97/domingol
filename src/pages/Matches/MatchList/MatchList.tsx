@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Trash2, ChevronRight } from "lucide-react";
+import { Trash2, Eye } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
 import { Pagination } from "../../../components/Pagination/Pagination";
@@ -56,7 +56,7 @@ export const MatchList: React.FC<MatchListProps> = ({
                   </S.ScoreBox>
                 </S.MatchContainer>
                 <S.StyledLink to={`/partida/${match.id}`}>
-                  <ChevronRight size={19} />
+                  <Eye size={19} />
                 </S.StyledLink>
                 <Button onClick={() => onDeleteMatchClick(match.id)}>
                   <Trash2 size={19} />

@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-import { Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 import { Button } from "../../../components/Button/Button";
 import { Pagination } from "../../../components/Pagination/Pagination";
@@ -15,11 +15,13 @@ type PlayerListProps = {
     name: string;
     goals: number;
   }[];
+  onEditPlayerClick: (playerId: string) => void;
   onDeletePlayerClick: (playerId: string) => void;
 }
 
 export const PlayerList: React.FC<PlayerListProps> = ({
   players,
+  onEditPlayerClick,
   onDeletePlayerClick,
 }) => {
   const reversedPlayers = [...players].reverse();
@@ -42,6 +44,9 @@ export const PlayerList: React.FC<PlayerListProps> = ({
               <S.PlayerContainer>
                 <S.PlayerName>{player.name}</S.PlayerName>
               </S.PlayerContainer>
+              <Button onClick={() => onEditPlayerClick(player.id)}>
+                <Pencil size={19} />
+              </Button>
               <Button onClick={() => onDeletePlayerClick(player.id)}>
                 <Trash2 size={19} />
               </Button>

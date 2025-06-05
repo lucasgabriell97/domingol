@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { AddPlayer } from "./AddPlayer/AddPlayer";
 import { PlayerList } from "./PlayerList/PlayerList";
+import { EditPlayerModal } from "./EditPlayerModal/EditPlayerModal";
 
 import { Title } from "../../components/Title/Title";
 
@@ -11,6 +12,8 @@ import { usePlayers } from "../../context/PlayersContext";
 
 export const Players: React.FC = () => {
   const { players, setPlayers } = usePlayers();
+
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const onAddPlayerSubmit = (name: string) => {
     const playerExists = players.some(
@@ -32,6 +35,10 @@ export const Players: React.FC = () => {
     }
   };
 
+  const onEditPlayerClick = (playerId: string) => {
+    setIsModalOpen(true);
+  }
+
   const onDeletePlayerClick = (playerId: string) => {
     if (confirm("Tem certeza que deseja remover este jogador?") == true) {
       const updatedPlayers = players.filter((player) => player.id !== playerId);
@@ -48,9 +55,15 @@ export const Players: React.FC = () => {
         <Title>Lista de jogadores</Title>
         <PlayerList
           players={players}
+          onEditPlayerClick={onEditPlayerClick}
           onDeletePlayerClick={onDeletePlayerClick}
         />
       </S.PlayersSection>
+
+      <EditPlayerModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </S.PlayersMain>
   );
 };
