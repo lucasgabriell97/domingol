@@ -14,6 +14,10 @@ export const Players: React.FC = () => {
   const { players, setPlayers } = usePlayers();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedPlayer, setSelectedPlayer] = React.useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   const onAddPlayerSubmit = (name: string) => {
     const playerExists = players.some(
@@ -36,8 +40,36 @@ export const Players: React.FC = () => {
   };
 
   const onEditPlayerClick = (playerId: string) => {
-    setIsModalOpen(true);
-  }
+    const playerToEdit = players.find((player) => player.id === playerId);
+    if (playerToEdit) {
+      setSelectedPlayer(playerToEdit);
+      setIsModalOpen(true);
+    }
+  };
+
+  const onEditPlayerSubmit = (newName: string) => {
+    if (!selectedPlayer) return;
+
+    const playerExists = players.some(
+      (player) =>
+        player.name.trim().toLowerCase() === newName.trim().toLowerCase() &&
+        player.id !== selectedPlayer.id
+    );
+
+    if (playerExists) {
+      alert("Este jogador já está na lista! Escolha outro nome.");
+      return;
+    } 
+
+    const updatedPlayers = players.map((player) =>
+      player.id === selectedPlayer.id ? { ...player, name: newName } : player
+    );
+
+    setPlayers(updatedPlayers);
+    localStorage.setItem("players", JSON.stringify(updatedPlayers));
+    setIsModalOpen(false);
+    setSelectedPlayer(null);
+  };
 
   const onDeletePlayerClick = (playerId: string) => {
     if (confirm("Tem certeza que deseja remover este jogador?") == true) {
@@ -60,10 +92,17 @@ export const Players: React.FC = () => {
         />
       </S.PlayersSection>
 
-      <EditPlayerModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      {isModalOpen && selectedPlayer && (
+        <EditPlayerModal
+          isModalOpen={isModalOpen}
+          onModalClose={() => {
+            setIsModalOpen(false);
+            setSelectedPlayer(null);
+          }}
+          initialName={selectedPlayer.name}
+          onSave={onEditPlayerSubmit}
+        />
+      )}
     </S.PlayersMain>
   );
 };

@@ -45,7 +45,7 @@ export const AddPlayer: React.FC<AddPlayerProps> = ({ onAddPlayerSubmit }) => {
       />
       {errors.name && <S.ErrorMessage>{errors.name.message}</S.ErrorMessage>}
 
-      <Button type="submit">Cadastrar Jogador</Button>
+      <Button type="submit">Adicionar Jogador</Button>
     </S.PlayerForm>
   );
 };

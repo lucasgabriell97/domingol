@@ -7,9 +7,9 @@ import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 
 type EditPlayerModalProps = {
-  isOpen: boolean;
+  isModalOpen: boolean;
   initialName: string;
-  onClose: () => void;
+  onModalClose: () => void;
   onSave: (newName: string) => void;
 };
 
@@ -18,9 +18,9 @@ type FormInput = {
 };
 
 export const EditPlayerModal: React.FC<EditPlayerModalProps> = ({
-  isOpen,
+  isModalOpen,
   initialName,
-  onClose,
+  onModalClose,
   onSave,
 }) => {
   const {
@@ -30,19 +30,25 @@ export const EditPlayerModal: React.FC<EditPlayerModalProps> = ({
     formState: { errors },
   } = useForm<FormInput>();
 
+  React.useEffect(() => {
+    if (isModalOpen && initialName) {
+      reset({ name: initialName })
+    }
+  }, [initialName, isModalOpen, reset])
+
   const onSubmit: SubmitHandler<FormInput> = (data) => {
-    // onAddPlayerSubmit(data.name);
+    onSave(data.name);
     reset({ name: "" });
   };
 
-  if (!isOpen) return null;
+  if (!isModalOpen) return null;
 
   return (
     <S.EditPlayerModal >
       <S.ModalContent className="box">
         <S.ModalTitle>Editar Jogador</S.ModalTitle>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <S.Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             id="name"
             label="Nome"
@@ -62,12 +68,12 @@ export const EditPlayerModal: React.FC<EditPlayerModalProps> = ({
           )}
 
           <S.ModalActions>
-            <Button type="button" onClick={onClose} variant="outline">
+            <Button type="button" onClick={onModalClose} variant="outline">
               Cancelar
             </Button>
             <Button type="submit" variant="success">Salvar</Button>
           </S.ModalActions>
-        </form>
+        </S.Form>
       </S.ModalContent>
     </S.EditPlayerModal>
   );

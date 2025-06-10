@@ -26,6 +26,8 @@ export const ModalTitle = styled.h2`
   }
 `
 
+export const Form = styled.form``
+
 export const PlayerForm = styled.form`
   display: flex;
   flex-direction: column;
